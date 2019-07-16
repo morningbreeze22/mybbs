@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bbs</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+
+    <style>
+      *{
+        margin: auto;
+        padding: 0px;
+      }
+      #logindiv{
+        width: 600px;
+        height: 600px;
+        position: fixed;
+        top: 0px;
+        left: 0px;
+        right: 0px;
+        bottom: 0px;
+        margin: auto;
+      }
+        #info{
+          position:absolute;
+          right:0;
+          top:0;
+        }
+    </style>
+
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+  <div id="logindiv">
+    <div id="bbsname" align="center">
+      <h1>welcome to my bbs!</h1>
+    </div>
+    <br>
+    <div id="register" align="center">
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
+      <%= yield %>
+    </div>
+  </div>
+
+  <div id="info">
+    <% if current_user %>
+      <%= link_to('登出', destroy_user_session_path, :method => :delete) %> |
+      <%= link_to('修改密码', edit_registration_path(:user)) %>
+    <% else %>
+      <%= link_to('注册', new_registration_path(:user)) %> |
+      <%= link_to('登入', new_session_path(:user)) %>
+    <% end %>
+  </div>
+  </body>
+</html>
