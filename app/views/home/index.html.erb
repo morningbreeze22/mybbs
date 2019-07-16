@@ -1,7 +1,4 @@
-<% if current_user.admin? %>
-  <%= link_to "用户列表", lists_path %>
-<% elsif current_user.client? %>
-  <%= link_to "Client", clients_path %>
-<% else %>
-  <% root_path %>
+<br>
+<% if user_signed_in? %>
+  <%= link_to "Lists", lists_path %>
 <% end %>

@@ -21,11 +21,11 @@
         bottom: 0px;
         margin: auto;
       }
-        #info{
-          position:absolute;
-          right:0;
-          top:0;
-        }
+      #info{
+        position:absolute;
+        right:0;
+        top:0;
+      }
     </style>
 
 
@@ -47,6 +47,7 @@
   </div>
 
   <div id="info">
+    <%= link_to '首页', root_path %> |
     <% if current_user %>
       <%= link_to('登出', destroy_user_session_path, :method => :delete) %> |
       <%= link_to('修改密码', edit_registration_path(:user)) %>

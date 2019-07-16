@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 <br>
-<h1>Lists</h1>
+<h1>用户列表</h1>
 <br>
 <table>
   <thead>
@@ -20,15 +20,20 @@
         <td><%= list.userid %></td>
         <td><%= list.phone %></td>
         <td><%= list.role %></td>
-        <td><%= link_to 'Show', list %></td>
-        <td><%= link_to 'Edit', edit_list_path(list) %></td>
-        <td><%= link_to 'Destroy', list, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if can? :manage,@list %>
+          <td><%= link_to '详情', list %></td>
+          <td><%= link_to '编辑', edit_list_path(list) %></td>
+          <%if can? :destroy %>>
+            <td><%= link_to '删除', list, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <%end %>
+        <%end %>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
+<%if can? :create, @list %>
 <%= link_to '创建新用户', new_list_path %>
+<%end %>
 <%= link_to '返回',root_path %>

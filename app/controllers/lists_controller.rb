@@ -1,6 +1,6 @@
 class ListsController < ApplicationController
+  load_and_authorize_resource
   before_action :authenticate_user!    #检查权限
-  before_action :authenticate_admin    #检查是否管理员
   before_action :set_list, only: [:show, :edit, :update, :destroy]
 
   # GET /lists
