@@ -36,7 +36,11 @@
   <body>
   <div id="logindiv">
     <div id="bbsname" align="center">
-      <h1>welcome to my bbs!</h1>
+      <% if current_user %>
+        <h1>welcome to my bbs!  <%= current_user.username  %></h1>
+      <%else %>
+        <h1>welcome to my bbs!</h1>
+      <% end %>
     </div>
     <br>
     <div id="register" align="center">
@@ -50,7 +54,7 @@
     <%= link_to '首页', root_path %> |
     <% if current_user %>
       <%= link_to('登出', destroy_user_session_path, :method => :delete) %> |
-      <%= link_to('修改密码', edit_registration_path(:user)) %>
+      <%= link_to('修改信息', edit_registration_path(:user)) %>
     <% else %>
       <%= link_to('注册', new_registration_path(:user)) %> |
       <%= link_to('登入', new_session_path(:user)) %>

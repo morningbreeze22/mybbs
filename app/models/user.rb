@@ -11,7 +11,7 @@ class User < ApplicationRecord
 
   attr_writer :login
 
-    def admin?
+  def admin?
     self.role == "admin"
   end
 
@@ -19,7 +19,7 @@ class User < ApplicationRecord
     @login || self.username || self.email
   end
 
-
+  #重载查询函数，根据用户名或邮箱找用户
   def self.find_for_database_authentication(allow_conditions)
     conditions = allow_conditions.dup
     if login = conditions.delete(:login)

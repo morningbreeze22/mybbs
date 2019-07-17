@@ -1,0 +1,31 @@
+<h2>创建以下用户</h2>
+<br>
+<%= form_for :user, url: users_path do |f| %>
+
+
+  <div class="field">
+    <%= f.label :电子邮箱 %><br />
+    <%= f.text_field :email, autofocus: true, autocomplete: "email" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :用户名 %><br />
+    <%= f.text_field :username, autofocus: true, autocomplete: "username" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :密码 %><br />
+    <%= f.text_field :password, autocomplete: "new-password" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :权限 %><br />
+    <%= f.text_field :role, autocomplete: "new_role" %>
+  </div>
+
+<div class="actions">
+    <%= f.submit "创建" %>
+</div>
+<% end %>
+<br>
+<%= link_to '返回',root_path %>

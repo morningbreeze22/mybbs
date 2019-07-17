@@ -12,30 +12,25 @@ class ApplicationController < ActionController::Base
       root_path
     end
 =end
+
   protect_from_forgery with: :exception
   def after_sign_in_path_for(resource)
     if resource.is_a?(User)
-      if resource.email == "jim.song@icitymobile.com"
+      if resource.role != nil
+        resource.add_role resource.role
+      elsif resource.email == "jim.song@icitymobile.com"
         resource.add_role 'admin'
+      elsif resource.username == "master1" || resource.username == "master2" || resource.username == "master3"
+        resource.add_role 'master'
+      else
+        resource.add_role "member"
       end
-      resource
     end
     root_path
   end
-=begin
-
-  protected
-
-  def authenticate_admin
-    unless current_user.admin?
-      redirect_to root_path
-    end
-  end
-
-=end
 
   def configure_permitted_parameters
-    added_attrs = [:username, :email, :password, :password_confirmation, :remember_me]
+    added_attrs = [:username, :email, :password, :role, :password_confirmation, :remember_me]
     devise_parameter_sanitizer.permit :sign_up, keys: added_attrs
     devise_parameter_sanitizer.permit :account_update, keys: added_attrs
   end
