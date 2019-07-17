@@ -13,6 +13,12 @@
   <% end %>
 
   <div class="field">
+    <%= f.label :用户名 %><br />
+    <%= f.text_field :username, autofocus: true, autocomplete: "username" %>
+  </div>
+
+
+  <div class="field">
     <%= f.label :新密码 %> <i>(不更新则此处留白)</i><br />
     <%= f.password_field :password, autocomplete: "new-password" %>
     <% if @minimum_password_length %>
