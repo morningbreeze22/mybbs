@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   get 'users/destroy'
   get 'users/index'
   resources :lists
-  devise_for :users, :path_prefix =>"d"
+  devise_for :users, :path_prefix =>"d" ,controllers: {registrations: 'user/registrations'}
   resources :users
   #resources :users, :only => [:show]
   #match '/users',         to: 'users#index',      via: 'get'
@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   #match '/users/:id',     to: 'users#destroy',    via: 'delete'
   #match '/users/new',     to: 'users#new' ,       via: 'get'
   #match '/users/create',     to: 'users#create' ,    via: 'post'
+
+  #mount RuCaptcha::Engine => "/rucaptcha"
 
   root to: "home#index"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
