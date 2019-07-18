@@ -6,7 +6,7 @@ class User < ApplicationRecord
             format: { with: /\A[a-zA-Z0-9]*\z/, message: "may only contain letters and numbers." }
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, :registerable,
+  devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :validatable, authentication_keys: [:login]
 
   attr_writer :login
