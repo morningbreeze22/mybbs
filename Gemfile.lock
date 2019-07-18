@@ -154,6 +154,8 @@ GEM
     rolify (5.2.0)
     ruby_dep (1.5.0)
     rubyzip (1.2.3)
+    rucaptcha (2.5.1)
+      railties (>= 3.2)
     sass (3.7.4)
       sass-listen (~> 4.0.0)
     sass-listen (4.0.0)
@@ -220,6 +222,7 @@ DEPENDENCIES
   puma (~> 3.11)
   rails (~> 5.2.1)
   rolify
+  rucaptcha
   sass-rails (~> 5.0)
   selenium-webdriver
   spring
