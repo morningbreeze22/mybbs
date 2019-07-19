@@ -1,0 +1,39 @@
+
+<p id="notice"><%= notice %></p>
+<br>
+<h1>用户列表</h1>
+<br>
+<table>
+  <thead>
+  <tr>
+    <th>email</th>
+    <th>Userid</th>
+    <th>Username</th>
+    <th colspan="5"></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @users.each do |user| %>
+    <tr>
+      <td><%= user.email %></td>
+      <td><%= user.id %></td>
+      <td><%= user.username %></td>
+      <% if can? :manage,@user %>
+        <td><%= link_to '详情', user %></td>
+        <%if can? :destroy, @user %>>
+          <td><%= link_to '删除', user , method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <%end %>
+      <%end %>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%if can? :create, @list %>
+  <%= link_to '创建新用户', new_user_path %>
+<%end %>
+
+<%= link_to '返回',root_path %>
