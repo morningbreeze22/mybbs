@@ -91,4 +91,13 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  #邮件验证
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.default_url_options = { :host => "https://immense-headland-99459.herokuapp.com"  }
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.default :charset => "utf-8"
+
+
+
 end
