@@ -35,8 +35,12 @@ class Ability
       elsif user.has_role? :master  #这里的master权限等级次于admin，能增改查，没有删除功能。
         can :manage, :all
         cannot :destroy, :all  #这里就是去掉删除功能。
-      else
+      elsif user.has_role? :member
         can :read, :all    #else之后的用户只有只读功能。
+        can :manage , :user
+        can :manage, :signature,{owner_id:user.id}
+      else
+        can :read, :all
       end
   end
 end

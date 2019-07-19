@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
   get 'users/destroy'
   get 'users/index'
-  resources :lists
   devise_for :users, :path_prefix =>"d" ,controllers: {registrations: 'user/registrations'}
-  resources :users
+  resources :users do
+    resources :signatures
+  end
   #resources :users, :only => [:show]
   #match '/users',         to: 'users#index',      via: 'get'
   #match '/users/:id',     to: 'users#show',       via: 'get'

@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
+
 =begin
   protect_from_forgery with: :exception
     def after_sign_in_path_for(resource)
@@ -14,6 +15,8 @@ class ApplicationController < ActionController::Base
 =end
 
   protect_from_forgery with: :exception
+
+  #根据预定规则分配角色
   def after_sign_in_path_for(resource)
     if resource.is_a?(User)
       if resource.role != nil
@@ -29,10 +32,15 @@ class ApplicationController < ActionController::Base
     root_path
   end
 
+
+
   def configure_permitted_parameters
     added_attrs = [:username, :email, :password, :role, :password_confirmation, :remember_me]
     devise_parameter_sanitizer.permit :sign_up, keys: added_attrs
     devise_parameter_sanitizer.permit :account_update, keys: added_attrs
   end
+
+
+
 
 end

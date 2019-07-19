@@ -1,1 +1,28 @@
 <h1>This is <%= @user.username %>'s page! </h1>
+<br>
+
+<% unless @user.signature.blank? %>
+  <h2><%= @user.username %>的签名：</h2><br>
+  <p>
+    <%= @user.signature.body %>
+  </p>
+<% end %>
+<br>
+<br>
+
+<% if can? :manage, @user.signature %>
+
+  <h2>更新签名</h2><br>
+  <%= form_for ([@user, @user.signature]) do |f|  %>
+    <p>
+      <%= f.label "在框中输入新签名" %><br>
+      <%= f.text_area :body %>
+    </p>
+    <p>
+      <%= f.submit "更新" %>
+    </p>
+  <% end %>
+<% end %>
+
+<br>
+<%= link_to "返回用户列表", users_path %>

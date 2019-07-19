@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   rolify
-  has_one :list
+  has_one :signature
   validates :username, presence: true, length: {maximum: 255},
             uniqueness: { case_sensitive: false },
             format: { with: /\A[a-zA-Z0-9]*\z/, message: "may only contain letters and numbers." }
