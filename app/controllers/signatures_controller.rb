@@ -1,14 +1,22 @@
 class SignaturesController < ApplicationController
-
+  load_and_authorize_resource
   def new
-    @signature=Signature.new
+    #@user = User.find(params[:user_id])
+    #@signature=Signature.new
   end
 
   def create
     @user = User.find(params[:user_id])
-    @signature = @user.signatures.create(signature_params)
+    @user.signature = Signature.create(signature_params)
+    #@signature = @user.signature.create(signature_params)
     redirect_to user_path(@user)
   end
+
+
+  def index
+
+  end
+
 
   def update
     @user= User.find(params[:user_id])

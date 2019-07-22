@@ -36,9 +36,10 @@ class Ability
         can :manage, :all
         cannot :destroy, :all  #这里就是去掉删除功能。
       elsif user.has_role? :member
-        can :read, :all    #else之后的用户只有只读功能。
-        can :manage , :user
-        can :manage, :signature,{owner_id:user.id}
+        can :read, :all    #else之后的用户只有只读和修改自己签名功能。
+        #can :manage , :user
+        can :manage, User, :id => user.id
+        can :manage, Signature, :user_id => user.id
       else
         can :read, :all
       end

@@ -1,0 +1,11 @@
+<h2>添加一个签名：</h2><br>
+
+<%= form_for :signature, url: user_signatures_path do |f| %>
+  <div class="field">
+    <%= f.text_area :body, autocomplete: "这个人很懒" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "添加" %>
+  </div>
+<% end %>
