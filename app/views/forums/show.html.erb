@@ -1,0 +1,9 @@
+<p id="notice"><%= notice %></p>
+
+<h2>
+  <strong>欢迎来到：</strong>
+  <%= @forum.name %>
+</h2>
+<br>
+<%= link_to '编辑', edit_forum_path(@forum) %> |
+<%= link_to '返回', forums_path %>
