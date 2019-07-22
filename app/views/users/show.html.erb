@@ -10,8 +10,8 @@
 <% end %>
 <br>
 
-
-<% if can? :manage, @user %>
+<% @signature = @user.signature %>
+<% if can? :manage, @signature %>   #普通用户只能创建或修改自己的签名
   <% if @user.signature.present? %>
     <h2>更新签名</h2><br>
     <%= form_for ([@user, @user.signature]) do |f|  %>
