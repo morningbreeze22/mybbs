@@ -1,9 +1,31 @@
 <p id="notice"><%= notice %></p>
-
-<h2>
-  <strong>欢迎来到：</strong>
-  <%= @forum.name %>
-</h2>
+<% @forum = @result[0][:forum] %>
+<% @articles = @result[0][:articles] %>
+<h1>
+  <strong>这里是：</strong><br><br>
+  <strong> <%= @forum.name %> 板块 </strong>
+</h1>
 <br>
-<%= link_to '编辑', edit_forum_path(@forum) %> |
+<h2>帖子：</h2>
+
+<br>
+<table>
+  <thead>
+  <tr>
+    <th colspan="30"></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @articles.each do |article| %>
+    <tr>
+      <td><%= article.title %></td>
+    </tr>
+    <p><% article.author %></p>
+  <% end %>
+  </tbody>
+</table>
+
+<%= link_to '发帖', new_forum_article_path(@forum) %>
+<%= link_to '编辑', edit_forum_path(@forum) %>
 <%= link_to '返回', forums_path %>

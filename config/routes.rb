@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  resources :forums
+  resources :forums do
+    resources :articles
+  end
   get 'users/destroy'
   get 'users/index'
   devise_for :users, :path_prefix =>"d" ,controllers: {registrations: 'user/registrations'}

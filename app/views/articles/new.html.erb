@@ -1,0 +1,28 @@
+<h2>发帖</h2>
+<br>
+<%= form_for :article, url: forum_articles_path do |f| %>
+
+
+  <div class="field">
+    <%= f.label :标题 %><br />
+    <%= f.text_field :title, autofocus: true, autocomplete: "title" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :作者 %><br />
+    <%= f.text_field :author, autofocus: true, autocomplete: "username" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :正文 %><br />
+    <%= f.text_area :body, autocomplete: "body" %>
+  </div>
+
+
+  <div class="actions">
+    <%= f.submit "发帖" %>
+  </div>
+
+<% end %>
+<br>
+<%= link_to '返回',root_path %>
