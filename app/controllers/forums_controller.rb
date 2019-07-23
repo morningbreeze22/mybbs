@@ -61,6 +61,31 @@ class ForumsController < ApplicationController
     end
   end
 
+  def favorforum
+    @forum = Forum.find(params[:id])
+    @forum.users <<  current_user
+    redirect_to "/forums"
+  end
+
+
+  def unfavorforum
+    @forum = Forum.find(params[:id])
+    @forum.users.delete current_user
+    redirect_to "/forums"
+  end
+
+  def unfavorinlist
+    @forum = Forum.find(params[:id])
+    @forum.users.delete current_user
+    redirect_to "/myfavor"
+  end
+
+
+  def allfavor
+    @forums = current_user.forums
+  end
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_forum

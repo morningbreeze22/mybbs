@@ -14,6 +14,10 @@ Rails.application.routes.draw do
   #match '/users/create',     to: 'users#create' ,    via: 'post'
 
   #mount RuCaptcha::Engine => "/rucaptcha"
+  match '/forums/favor/:id(.:format)', to: 'forums#favorforum', via: 'post'
+  match '/forums/unfavor/:id(.:format)', to: 'forums#unfavorforum', via: 'post'
+  match '/unfavor/:id(.:format)', to: 'forums#unfavorinlist', via: 'post'
+  match '/myfavor', to: 'forums#allfavor', via: 'get'
 
   root to: "home#index"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

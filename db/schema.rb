@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_22_062404) do
+ActiveRecord::Schema.define(version: 2019_07_23_030635) do
 
   create_table "forums", force: :cascade do |t|
     t.string "name"
@@ -53,6 +53,13 @@ ActiveRecord::Schema.define(version: 2019_07_22_062404) do
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["username"], name: "index_users_on_username", unique: true
+  end
+
+  create_table "users_forums", id: false, force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "forum_id"
+    t.index ["forum_id"], name: "index_users_forums_on_forum_id"
+    t.index ["user_id"], name: "index_users_forums_on_user_id"
   end
 
   create_table "users_roles", id: false, force: :cascade do |t|

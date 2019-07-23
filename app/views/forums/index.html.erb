@@ -15,6 +15,11 @@
       <tr>
         <td><%= forum.name %></td>
         <td><%= link_to '进入', forum %></td>
+        <% if isfavored?(forum) %>
+          <td><%= link_to "取消收藏", "/forums/unfavor/"+forum.id.to_s, method: :post%></td>
+        <% else %>
+          <td><%= link_to "收藏", "/forums/favor/"+forum.id.to_s, method: :post%></td>
+        <% end %>
         <% if can? :manage, @forum %>
           <td><%= link_to '删除', forum, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <% end %>
@@ -27,3 +32,5 @@
 <% if can? :manage, @forum %>
   <%= link_to '新建板块', new_forum_path %>
 <% end %>
+
+<%= link_to "返回", root_path %>

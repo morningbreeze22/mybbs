@@ -26,6 +26,22 @@
         right:10px;
         top:0;
       }
+      #bg{
+        position:fixed;
+        top: 0;
+        left: 0;
+        width:100%;
+        height:100%;
+        min-width: 1000px;
+        z-index:-10;
+        zoom: 1;
+        background-color: #fff;
+        background-repeat: no-repeat;
+        background-size: cover;
+        -webkit-background-size: cover;
+        -o-background-size: cover;
+        background-position: center 0;
+      }
     </style>
 
 
@@ -33,23 +49,24 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-  <div id="logindiv">
-    <div id="bbsname" align="center">
-      <% if current_user %>
-        <h1>welcome to my bbs!  <%= current_user.username  %></h1>
-      <%else %>
-        <h1>welcome to my bbs!</h1>
-      <% end %>
-    </div>
-    <br>
-      <div id="register" align="center"  >
-        <p class="notice"><%= notice %></p>
-        <p class="alert"><%= alert %></p>
-      <%= yield %>
+  <body >
+  <div id="bg"  style="background-color: #fff7db" >
+    <div id="logindiv">
+      <div id="bbsname" align="center">
+        <% if current_user %>
+          <h1>welcome to my bbs!  <%= current_user.username  %></h1>
+        <%else %>
+          <h1>welcome to my bbs!</h1>
+        <% end %>
+      </div>
+      <br>
+        <div id="register" align="center"  >
+          <p class="notice"><%= notice %></p>
+          <p class="alert"><%= alert %></p>
+        <%= yield %>
+      </div>
     </div>
   </div>
-
   <div id="info">
     <%= link_to '首页', root_path %> |
     <% if current_user %>
