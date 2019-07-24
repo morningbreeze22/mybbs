@@ -2,5 +2,6 @@
 <% if user_signed_in? %>
   <%= link_to "用户列表", users_path %><br><br>
   <%= link_to "社区", forums_path  %>
-  <%= link_to "我的收藏" , "/myfavor", method: :get %>
+  <%= link_to "我的收藏" , "/myfavor", method: :get %><br><br>
+  <%= link_to "我的帖子", "/myarticles", method: :get %>
 <% end %>

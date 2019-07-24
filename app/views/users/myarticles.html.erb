@@ -1,0 +1,8 @@
+<h2>我的帖子：</h2><br>
+<% @articles.each do |f| %>
+  <tr>
+    <td><%= f.title %></td>
+  </tr>
+<% end %>
+<br>
+<%= link_to "返回", root_path %>

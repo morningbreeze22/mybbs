@@ -31,7 +31,6 @@
 <br>
 <% if can? :manage, @forum %>
   <%= link_to '新建板块', new_forum_path %> |
-  <%= link_to '编辑', edit_forum_path(@forum) %>
 <% end %>
 
 <%= link_to "返回", root_path %>
