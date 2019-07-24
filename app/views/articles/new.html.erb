@@ -9,13 +9,13 @@
   </div>
 
   <div class="field">
-    <%= f.label :作者 %><br />
+    <%= f.label :发帖人（可以任意起名） %><br />
     <%= f.text_field :author, autofocus: true, autocomplete: "username" %>
   </div>
 
   <div class="field">
-    <%= f.label :正文 %><br />
-    <%= f.text_area :body, autocomplete: "body" %>
+    <%= f.label :内容 %><br />
+    <%= f.text_area :body, autocomplete: "body", :cols=>"80", :rows=>"8" %>
   </div>
 
 
@@ -25,4 +25,4 @@
 
 <% end %>
 <br>
-<%= link_to '返回',root_path %>
+<%= link_to '返回', :back %>

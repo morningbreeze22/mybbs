@@ -16,6 +16,13 @@ class ArticlesController < ApplicationController
 
   def show
     @article = Article.find(params[:id])
+    if @article.clicks.present?
+      @article.update :clicks=>@article.clicks+1
+    else
+      @article.clicks=1
+    end
+    @article.save
+    @article
   end
 
   def update
@@ -25,6 +32,23 @@ class ArticlesController < ApplicationController
   def destroy
 
   end
+
+  def like
+    @article = Article.find(params[:id])
+    if @article.liked.present?
+      @article.update :liked=>@article.liked+1
+    else
+      @article.liked=1
+    end
+    if @article.save
+      respond_to do |format|
+        #format.html
+        format.js { render }
+        #format.json {render json: @article, status: ok, location: @article}
+      end
+    end
+  end
+
 
   private
   def article_params

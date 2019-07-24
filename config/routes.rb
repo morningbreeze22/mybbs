@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   match '/unfavor/:id(.:format)', to: 'forums#unfavorinlist', via: 'post'
   match '/myfavor', to: 'forums#allfavor', via: 'get'
   match '/myarticles', to: 'users#myarticles', via: 'get'
-
+  match '/forums/:forum_id/articles/:id/like', to:'articles#like', via: 'post'
   root to: "home#index"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

@@ -1,1 +1,20 @@
-<h2><% @article.title %></h2>
+<h2><%= @article.title %></h2>
+<div id="first">
+  <%= @article.body %>
+  <div id="addinfo">
+    <div id="like">
+      <div class="inline">
+      <%= link_to image_tag("like.png"), '/forums/'+@article.forum_id.to_s+'/articles/'+@article.id.to_s+'/like',method: :post, remote: :true %>
+      </div>
+
+      <div id="likenumber" class="inline">
+        <%= @article.liked %>
+      </div>
+    </div>
+
+    <div id="time">
+      <%= (@article.created_at+8.hour).to_s[0,20] %>
+    </div>
+  </div>
+</div>
+<%= link_to "返回", :back %>

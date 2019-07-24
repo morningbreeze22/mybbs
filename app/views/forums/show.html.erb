@@ -6,22 +6,30 @@
   <strong> <%= @forum.name %> 板块 </strong>
 </h1>
 <br>
-<h2>帖子：</h2>
+
 
 <br>
 <table>
   <thead>
   <tr>
-    <th colspan="30"></th>
+    <th colspan="50",align="left">标题</th>
+    <th colspan="10",align="center">发帖人</th>
+    <th colspan="10",align="center">点击量</th>
   </tr>
   </thead>
 
   <tbody>
   <% @articles.each do |article| %>
     <tr>
-      <td><%= article.title %></td>
+      <td colspan="50",align="left"><%= link_to article.title, forum_article_path(@forum,article) %></td>
+      <td colspan="10",align="center"><%= article.author %></td>
+      <% if article.clicks.present? %>
+        <td colspan="10",align="center"><%= article.clicks%></td>
+      <% else %>
+        <td colspan="10",align="center">0</td>
+      <% end %>
     </tr>
-    <p><% article.author %></p>
+
   <% end %>
   </tbody>
 </table>
