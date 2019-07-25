@@ -29,6 +29,11 @@ class UsersController < ApplicationController
     @articles = current_user.articles
   end
 
+  def myreplies
+    @replies = current_user.replies
+  end
+
+
 
   private
     def user_params

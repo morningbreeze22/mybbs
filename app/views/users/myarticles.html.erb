@@ -5,8 +5,8 @@
   <thead>
   <tr>
     <th colspan="50",align="left">标题</th>
-    <th colspan="10",align="center">发帖所用名</th>
-    <th colspan="10",align="center">点击量</th>
+    <th colspan="20",align="center">发帖所用名</th>
+    <th colspan="20",align="center">点击量</th>
   </tr>
   </thead>
 
@@ -14,11 +14,17 @@
   <% @articles.each do |article| %>
     <tr>
       <td colspan="50",align="left"><%= link_to article.title, forum_article_path(article.forum_id,article) %></td>
-      <td colspan="10",align="center"><%= article.author %></td>
+      <td colspan="20",align="center">
+        <% if article.author.blank? %>
+          匿名
+        <% else %>
+          <%= article.author %>
+        <% end %>
+      </td>
       <% if article.clicks.present? %>
-        <td colspan="10",align="center"><%= article.clicks%></td>
+        <td colspan="20",align="center"><%= article.clicks%></td>
       <% else %>
-        <td colspan="10",align="center">0</td>
+        <td colspan="20",align="center">0</td>
       <% end %>
       <% if can? :destroy, @article %>
         <td><%= link_to "删除", forum_article_path(article.forum_id,article), method: :delete %></td>

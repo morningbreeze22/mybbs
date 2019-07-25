@@ -33,7 +33,8 @@ class ArticlesController < ApplicationController
   end
 
   def destroy
-
+    @article.destroy
+    redirect_to forum_path(@article.forum_id)
   end
 
   def like

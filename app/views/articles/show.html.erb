@@ -14,7 +14,12 @@
         <%= @article.liked %>
       </div>
 
-      楼主：<%= @article.author %>
+      楼主：
+      <% if @article.author.blank? %>
+        匿名用户
+      <% else %>
+        <%= @article.author %>
+      <% end %>
 
     </div>
 
@@ -32,14 +37,19 @@
           <%= reply.body %>
           <div id="addinfo">
             <div class="inline">
-              <%= reply.poster  %>
-              <% if can? :manage, @article %>
-                <%= link_to "删除此回帖" , forum_article_reply_path(@article.forum_id,@article.id,reply), method: :delete %>
+              <% if reply.poster.blank? %>
+                匿名用户
+              <% else %>
+                <%= reply.poster %>
               <% end %>
+              回复于：
             </div>
             <div id="time">
               <%= (reply.created_at+8.hour).to_s[0,20] %>
             </div>
+            <% if can? :manage, @article %>
+              <%= link_to "删除此回帖" , forum_article_reply_path(@article.forum_id,@article.id,reply), method: :delete %>
+            <% end %>
           </div>
         </div>
       <% end %>
@@ -52,7 +62,7 @@
     </div><br>
     <%= form_for :reply, url: forum_article_replies_path(@article.forum_id,@article.id) do |f| %>
       <div class="field">
-        <%= f.label :回帖人（可以任意起名） %><br />
+        <%= f.label :回帖人（不填即匿名） %><br />
         <%= f.text_field :poster,  autocomplete: "username" %>
       </div>
 

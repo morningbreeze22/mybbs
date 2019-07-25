@@ -1,0 +1,27 @@
+<div>
+  <% if @replies.present? %>
+    <% @replies.each do |reply| %>
+      <div id="reply">
+        <% @article=findarticle(reply.id) %>
+        <% @forum = findforum(reply.id) %>
+        <strong>在 <%= link_to @forum.name, forum_path(@forum) %> 的
+          <%= link_to @article.title, forum_article_path(@forum.id,@article) %> 中：
+        </strong><br><br>
+        <%= reply.body %>
+        <div id="addinfo">
+          <div class="inline">
+            所用名：
+            <% if reply.poster.blank? %>
+              匿名用户
+            <% else %>
+              <%= reply.poster %>
+            <% end %>
+          </div>
+          <div id="time">
+            <%= (reply.created_at+8.hour).to_s[0,20] %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+</div>

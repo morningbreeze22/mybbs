@@ -22,14 +22,20 @@
   <% @articles.each do |article| %>
     <tr>
       <td colspan="50",align="left"><%= link_to article.title, forum_article_path(@forum,article) %></td>
-      <td colspan="10",align="center"><%= article.author %></td>
+      <td colspan="10",align="center">
+        <% if article.author.blank? %>
+          匿名用户
+        <% else %>
+          <%= article.author %>
+        <% end %>
+      </td>
       <% if article.clicks.present? %>
         <td colspan="10",align="center"><%= article.clicks%></td>
       <% else %>
         <td colspan="10",align="center">0</td>
       <% end %>
       <% if can? :destroy, @article %>
-        <td><%= link_to "删除", forum_article_path(article.forum_id,article), method: :delete %></td>
+        <td><%= link_to "删除", forum_article_path(article.forum_id,article), method: :delete,data: { confirm: 'Are you sure?' }  %></td>
       <% end %>
     </tr>
 
