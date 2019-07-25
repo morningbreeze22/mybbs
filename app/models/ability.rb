@@ -34,12 +34,17 @@ class Ability
         can :manage, :all
       elsif user.has_role? :master  #这里的master权限等级次于admin，能增改查，没有删除功能。
         can :manage, :all
-        cannot :destroy, :all  #这里就是去掉删除功能。
+        cannot :destroy, User  #这里就是去掉删除用户功能。
       elsif user.has_role? :member
         can :read, :all    #else之后的用户只有只读和修改自己签名功能。
         #can :manage , :user
         can :manage, User, :id => user.id
         can :manage, Signature, :user_id => user.id
+        can :manage, Article, :user_id => user.id  #可以删掉自己帖子中的回贴
+        can :like, Article
+        can :manage, Forum
+        cannot :edit, Forum
+        cannot :destroy, Article  #这里就是去掉删除功能。
       else
         can :read, :all
       end

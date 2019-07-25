@@ -1,5 +1,6 @@
 class ForumsController < ApplicationController
   before_action :set_forum, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
 
   # GET /forums
   # GET /forums.json

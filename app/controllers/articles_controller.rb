@@ -1,4 +1,6 @@
 class ArticlesController < ApplicationController
+  load_and_authorize_resource
+
   def new
 
   end
@@ -22,7 +24,8 @@ class ArticlesController < ApplicationController
       @article.clicks=1
     end
     @article.save
-    @article
+    @replies = @article.replies
+    @result = [:article => @article, :replies => @replies]
   end
 
   def update

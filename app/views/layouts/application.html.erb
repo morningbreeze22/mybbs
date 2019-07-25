@@ -11,36 +11,48 @@
   </head>
 
   <body >
-  <div id="bg"  style="background-color: #fff7db" >
-    <div id="logindiv">
-      <div id="bbsname" align="center">
+  <div>
+    <div id="bg"  style="background-color: #fff7db" >
+
+
+
+      <div id="logindiv">
+        <div id="bbsname" align="center">
+          <% if current_user %>
+            <h1>welcome to my bbs!  <%= current_user.username  %></h1>
+          <%else %>
+            <h1>welcome to my bbs!</h1>
+          <% end %>
+        </div>
+        <br>
+          <div id="mainbody" align="center"  >
+            <p class="notice"><%= notice %></p>
+            <p class="alert"><%= alert %></p>
+          <%= yield %>
+        </div>
+        <div id="footer">
+          版权所有：jim
+        </div>
+
+      </div>
+
+      <div id="info">
+        <%= link_to '首页', root_path %> |
         <% if current_user %>
-          <h1>welcome to my bbs!  <%= current_user.username  %></h1>
-        <%else %>
-          <h1>welcome to my bbs!</h1>
+          <%= link_to('登出', destroy_user_session_path, :method => :delete) %> |
+          <%= link_to('修改信息', edit_registration_path(:user)) %>
+        <% else %>
+          <%= link_to('注册', new_registration_path(:user)) %> |
+          <%= link_to('登入', new_session_path(:user)) %>
         <% end %>
       </div>
-      <br>
-        <div id="register" align="center"  >
-          <p class="notice"><%= notice %></p>
-          <p class="alert"><%= alert %></p>
-        <%= yield %>
-      </div>
-    </div>
-  </div>
-  <div id="info">
-    <%= link_to '首页', root_path %> |
-    <% if current_user %>
-      <%= link_to('登出', destroy_user_session_path, :method => :delete) %> |
-      <%= link_to('修改信息', edit_registration_path(:user)) %>
-    <% else %>
-      <%= link_to('注册', new_registration_path(:user)) %> |
-      <%= link_to('登入', new_session_path(:user)) %>
-    <% end %>
-  </div>
 
-  <div id="footer">
-    版权所有：jim
+
+
+
+
+    </div>
+
   </div>
   </body>
 </html>

@@ -28,6 +28,9 @@
       <% else %>
         <td colspan="10",align="center">0</td>
       <% end %>
+      <% if can? :destroy, @article %>
+        <td><%= link_to "删除", forum_article_path(article.forum_id,article), method: :delete %></td>
+      <% end %>
     </tr>
 
   <% end %>
@@ -35,5 +38,7 @@
 </table>
 
 <%= link_to '发帖', new_forum_article_path(@forum) %>
-<%= link_to '编辑', edit_forum_path(@forum) %>
+<% if can? :edit, @forum %>
+  <%= link_to '编辑', edit_forum_path(@forum) %>
+<% end %>
 <%= link_to '返回', forums_path %>

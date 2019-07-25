@@ -3,6 +3,8 @@ class User < ApplicationRecord
   has_one :signature, dependent: :destroy
   has_and_belongs_to_many :forums, join_table: "users_forums"
   has_many :articles
+  has_many :replies
+
   validates :username, presence: true, length: {maximum: 255},
             uniqueness: { case_sensitive: false },
             format: { with: /\A[a-zA-Z0-9]*\z/, message: "may only contain letters and numbers." }

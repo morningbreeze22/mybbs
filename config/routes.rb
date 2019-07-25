@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   resources :forums do
-    resources :articles
+    resources :articles do
+      resources :replies
+    end
   end
   get 'users/destroy'
   get 'users/index'

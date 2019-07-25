@@ -20,6 +20,9 @@
       <% else %>
         <td colspan="10",align="center">0</td>
       <% end %>
+      <% if can? :destroy, @article %>
+        <td><%= link_to "删除", forum_article_path(article.forum_id,article), method: :delete %></td>
+      <% end %>
       <br>
     </tr>
   <% end %>

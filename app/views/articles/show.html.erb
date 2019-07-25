@@ -1,3 +1,6 @@
+<% @article=@result[0][:article] %>
+<% @replies=@result[0][:replies] %>
+
 <h2><%= @article.title %></h2>
 <div id="first">
   <%= @article.body %>
@@ -10,6 +13,9 @@
       <div id="likenumber" class="inline">
         <%= @article.liked %>
       </div>
+
+      楼主：<%= @article.author %>
+
     </div>
 
     <div id="time">
@@ -17,4 +23,50 @@
     </div>
   </div>
 </div>
-<%= link_to "返回", :back %>
+
+<div>
+  <div>
+    <% if @replies.present? %>
+      <% @replies.each do |reply| %>
+        <div id="reply">
+          <%= reply.body %>
+          <div id="addinfo">
+            <div class="inline">
+              <%= reply.poster  %>
+              <% if can? :manage, @article %>
+                <%= link_to "删除此回帖" , forum_article_reply_path(@article.forum_id,@article.id,reply), method: :delete %>
+              <% end %>
+            </div>
+            <div id="time">
+              <%= (reply.created_at+8.hour).to_s[0,20] %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div id="reply">
+    <div>
+      <h2>回帖</h2>
+    </div><br>
+    <%= form_for :reply, url: forum_article_replies_path(@article.forum_id,@article.id) do |f| %>
+      <div class="field">
+        <%= f.label :回帖人（可以任意起名） %><br />
+        <%= f.text_field :poster,  autocomplete: "username" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :内容 %><br />
+        <%= f.text_area :body, autocomplete: "body", :cols=>"80", :rows=>"4" %>
+      </div>
+
+      <div class="actions">
+        <%= f.submit "回贴" %>
+      </div>
+    <% end %>
+  </div>
+
+</div>
+
+<%= link_to "返回", forum_path(@article.forum_id) %>
