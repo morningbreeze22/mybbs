@@ -2,7 +2,7 @@ class User < ApplicationRecord
   rolify
   has_one :signature, dependent: :destroy
   has_and_belongs_to_many :forums, join_table: "users_forums"
-  has_many :articles
+  has_many :articles, dependent: :destroy
   has_many :replies
 
   validates :username, presence: true, length: {maximum: 255},
