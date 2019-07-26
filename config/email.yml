@@ -6,7 +6,7 @@ development:
   password: "sjw_980202"
   enable_starttls_auto: true
 production:
-  address: "smtp.gmail.com"
+  address: "smtp.163.com"
   port: 25
   authentication: "plain"
   user_name: "happywinesong@163.com"
