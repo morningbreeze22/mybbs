@@ -1,0 +1,8 @@
+<br>
+<% if user_signed_in? %>
+  <%= link_to "用户列表", users_path %><br><br>
+  <%= link_to "社区列表", forums_path  %><br><br>
+  <%= link_to "我的收藏" , "/myfavor", method: :get %><br><br>
+  <%= link_to "我的帖子", "/myarticles", method: :get %><br><br>
+  <%= link_to "我的回复", "/myreplies", method: :get %>
+<% end %>

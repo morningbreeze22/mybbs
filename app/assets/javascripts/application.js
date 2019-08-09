@@ -14,4 +14,6 @@
 //= require jquery
 //= require activestorage
 //= require turbolinks
+//= require rails_macdown
+//= require md_simple_editor
 //= require_tree .

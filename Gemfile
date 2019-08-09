@@ -3,6 +3,8 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.4.6'
 
+gem 'rails_macdown'
+gem 'md_simple_editor'
 
 gem 'cancancan'
 
@@ -14,6 +16,8 @@ gem 'jquery-ui-rails'
 
 gem 'jquery-rails', '~> 4.3', '>= 4.3.3'
 gem 'rails-ujs', '~> 0.1.0'
+
+gem 'rails-vue-loader'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.1'
